@@ -28,6 +28,33 @@ class Invoice:
         total_pure_price = self.totalImpurePrice(products) - self.totalDiscount(products)
         return total_pure_price
 
+    def totalQnt(self, products):
+        total_Qnt = 0
+        for k, v in products.items():
+            total_Qnt += int(v['qnt'])
+        return total_Qnt
+
+    def ProductUnitPriceHasNoZeroValue(self, products):
+        NoZeroValue = True
+        for k, v in products.items():
+            if v['unit_price'] == 0:
+                NoZeroValue = False
+        return NoZeroValue
+
+    def ProductQuantityHasNoZeroValue(self, products):
+        NoZeroValue = True
+        for k, v in products.items():
+            if v['qnt'] == 0:
+                NoZeroValue = False
+        return NoZeroValue
+
+    def ProductDiscountHasNoZeroValue(self, products):
+        NoZeroValue = True
+        for k, v in products.items():
+            if v['discount'] == 0:
+                NoZeroValue = False
+        return NoZeroValue
+
     def inputAnswer(self, input_value):
         while True:
             userInput = input(input_value)
